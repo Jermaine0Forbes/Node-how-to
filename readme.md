@@ -4,6 +4,7 @@
 - [how to upgrade node with nvm][upgrade-nvm]
 
 
+[home]:#how-to-node.js
 [env]:#how-to-use-process-env
 [upgrade-nvm]:#how-to-upgrade-nvm
 
