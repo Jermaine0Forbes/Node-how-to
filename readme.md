@@ -21,14 +21,14 @@ View Content
 - []()
 ---
 
-- first create a new folder and type npm init
-- now install express `npm i express --save`
-- now install dependencies that's needed 
+1. first create a new folder and type npm init
+2. now install express `npm i express --save`
+3. now install dependencies that's needed 
 
 ```
  npm i  body-parser cookie-parser cors debug crypto dotenv
 ```
-- create the index js file that is supposed to initialize the express app 
+4. create the index js file that is supposed to initialize the express app 
 
 ```js
 const express = require('express')
@@ -46,7 +46,7 @@ app.listen(port, () => {
 
 ```
 
-- add this code to add the dependencies that you've installed to get the app up and running 
+5. add this code to add the dependencies that you've installed to get the app up and running 
 
 ```js
 
@@ -98,7 +98,7 @@ app.listen(port, ip, function(){
     console.log("node environment is in "+n)
 })
 ```
-- create an .env file to store your variables
+6. create an .env file to store your variables
 
 ```
  vim .env
@@ -107,13 +107,21 @@ app.listen(port, ip, function(){
 ```
 DB_USERNAME="jermaine"
 DB_PASSWORD=""
-DB_PORT="5432"
+DB_PORT="1234"
 PORT=1738
 IP=123.123.123
 DB_NAME="Test"
 APP_ENV="development"
 TOKEN_SECRET="9f0dc1da0366d17fa6902386c6475e75c71b0a8b09b2bae4cca27354ab304ef659b3baa212aed819a71abef7ff07e5d9ffb3be7e41004d4b9c9d33c809a535ec"
 ```
+7. create folders that are supposed to hold the mvc structure
+
+```
+ mkdir mvc mvc/routes mvc/models/ mvc/controllers mvc/views
+```
+
+8. 
+
 
 </details>
 
