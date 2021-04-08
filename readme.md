@@ -120,7 +120,78 @@ TOKEN_SECRET="9f0dc1da0366d17fa6902386c6475e75c71b0a8b09b2bae4cca27354ab304ef659
  mkdir mvc mvc/routes mvc/models/ mvc/controllers mvc/views
 ```
 
-8. 
+8. Create the router `vim mvc/routes/router.js` and add any route path that are supposed to serve information like so
+
+```js
+var express = require('express');
+var route = express.Router();
+
+route.get("/home", (req,res) => {
+  res.send("this is the home page");
+})
+
+module.exports = route;
+```
+
+9. Now in the app.js file require the path to the router that you created,
+ and add it in the **app.use** method like so
+
+```js
+
+var express = require('express');
+var body = require('body-parser');
+var cookie = require('cookie-parser');
+var path = require('path');
+var app = express();
+var ip =  process.env.IP || '0.0.0.0'; 
+var cors = require("cors");
+var port = process.env.PORT || 3001;
+var routes = require('./mvc/routes/router');// require the router so then you can serve your files
+require('dotenv').config();
+
+
+
+app.use(cors());
+app.use(express.static(path.join(__dirname,'public')));
+app.use(body.json());
+app.use(body.urlencoded({extended:true}));
+app.use(cookie());
+
+// app.get("/", function(req, res){
+//   res.send("Welcome Home")
+// })
+
+app.use("/", routes); // this is how you can add the routes
+
+app.use(function(req,res,next){
+	if(res.status(404)){
+	  res.render('error/400');
+	}
+
+    next();
+});
+
+app.use(function(err,req,res,next){
+      if(res.status(500)){
+    	  var title = err;
+        res.render('error/500',{errTitle:title});
+    }else if(res.status(502)){
+        res.render('error/500',{errTitle:502});
+    }else if(res.status(503)){
+        res.render('error/500',{errTitle:503});
+    }
+})
+
+
+app.listen(port, ip, function(){
+    var n = process.env.APP_ENV;
+    const code = require('crypto').randomBytes(64).toString('hex');
+    console.log("node connected to "+port);
+    console.log("node environment is in "+n)
+})
+```
+
+
 
 
 </details>
