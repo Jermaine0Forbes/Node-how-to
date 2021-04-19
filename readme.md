@@ -126,7 +126,7 @@ TOKEN_SECRET="9f0dc1da0366d17fa6902386c6475e75c71b0a8b09b2bae4cca27354ab304ef659
 var express = require('express');
 var route = express.Router();
 
-route.get("/home", (req,res) => {
+route.get("/", (req,res) => {
   res.send("this is the home page");
 })
 
@@ -190,6 +190,112 @@ app.listen(port, ip, function(){
     console.log("node environment is in "+n)
 })
 ```
+
+10. Install a template engine to set up your views like so 
+
+```
+npm install handlebars express-handlebars --save
+```
+
+11. Then, require the template engine and add it to the express.engine method, configuring the view path,
+and declaring the extension file express should look for when rendering a view
+
+```js
+const hbs = require("express-handlebars");// requiring the handlebars
+
+app.use(cors());
+app.engine("hbs",hbs())//running the handlebars method to set up the template engine
+app.set("views",path.join(__dirname,"mvc/views")); // setting the views path
+app.set("view engine", "hbs" ); // setting the extension file
+app.use(express.static(path.join(__dirname,'public')));
+
+```
+
+
+12. Also, if you're using the handlebars method it is required to create a layouts file that is called 
+`main.handlebars`, so first create directory called layouts in the views folder like so `mkdir views/layouts`
+. Then create the file add template a basic code template like this 
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />  
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+  </head>
+  <body>
+    {{{body}}}
+  </body>
+</html>
+
+```
+
+13. Now in the **views** folder create a basic home file named `home.hbs` and add simple html like so .
+Also it is important to create a `views/error/500.hbs`, if you run node it will state that this file does not exist
+
+```html
+<p> Hello, {{name}} </p>
+
+<!-- Inside the 500.hbs -->
+<p> Error 500</p>
+```
+
+14. In the controller change the home method to *res.render* as opposed to *res.send* like so 
+
+```js
+
+// The old way
+route.get("/", (req,res) => {
+  res.send("this is the home page");
+})
+
+//The way to render files
+route.get("/", (req,res) => {
+  const data = {
+    name: "Jermaine Forbes"
+  }
+
+  res.render("home",data); // The home file will render: Hello, Jermaine Forbes
+})
+
+```
+
+15. Now create a separate controller file called `mvc/controllers/homeController.js` and add the function
+that is in callback function that is in the `router.js` file to this new file like so.
+
+```js
+// Inside homeController.js
+
+module.exports.page = (req, res) => { 
+
+  const data = {
+    name: "Jermaine Forbes"
+  }
+
+  res.render("home",data); // The home file will render: Hello, Jermaine Forbes
+}
+
+```
+
+16. In the **router.js** file require the homeController and it into the second parameter like so
+
+```js
+const express  = require('express');
+const route = express.Router();
+const home = require("../controllers/homeController");
+
+
+route.get("/",home.page)
+
+module.exports = route;
+
+
+```
+
+17. 
 
 
 
