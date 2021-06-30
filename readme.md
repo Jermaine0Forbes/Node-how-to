@@ -280,14 +280,16 @@ module.exports.page = (req, res) => {
 
 ```
 
-16. In the **router.js** file require the homeController and it into the second parameter like so
+16. In the **router.js** file require the homeController and insert it into the second parameter
+of the *get* method like so
 
 ```js
 const express  = require('express');
 const route = express.Router();
 const home = require("../controllers/homeController");
 
-
+// Doing this will make the code cleaner and easier to manage routes
+// That are specific a page or controller
 route.get("/",home.page)
 
 module.exports = route;
@@ -295,9 +297,96 @@ module.exports = route;
 
 ```
 
-17. 
+17. Next, we need to set up a model to CRUD any data. So first you need to setup mongodb on your server, [here](https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-16-04) is 
+a guide to do it in ubuntu. After your mongo has been set up, install mongoose like so.
+
+```
+npm i mongoose
+```
+
+18. In your `./mvc/models` directory create a `schema.js` and a `db.js`. The schema file is for you to define
+the models/documents fields that are required when you make any changes to them. And the **db** file is to connect
+to your mongodb so that when you make a CRUD change it will be saved into mongodb. Here is an example
 
 
+#### In schema.js 
+
+```js
+
+const goose = require('mongoose');
+const schema = goose.Schema;
+
+// Defines a user schema
+const user = new schema({
+    username: String,
+    password: String,
+    
+}, {
+ timestamps:true
+});
+
+
+goose.model("Users", user);
+```
+
+#### In db.js 
+
+```js
+const goose = require('mongoose');
+const db = goose.connection;
+const dbURI = 'mongodb://localhost/test';
+const settings = { useNewUrlParser: true,  useUnifiedTopology: true  };
+goose.connect(dbURI, settings);
+
+db.on('connected', function(){
+    console.log("database connected");
+});
+
+db.on('error', function(err){
+    console.log(err)
+});
+
+db.on('disconnected', function(){
+    console.log("database disconnected");
+});
+
+// Make sure you put the schema file 
+// at the bottom of the db file. I'm not sure why
+// I assume after a connection has been made it will
+// create the model and attach it to mongoose
+require('./schema')
+
+```
+
+19. Now, we want to create a simple form that can save user information. So in the `./mvc/views/home.hbs`
+file we want to add in a form like so. 
+
+**Note**: this form is using classes from Bootstrap 4.  So if you want it to look exactly like this you have to 
+get the styles from there
+
+```html
+<div class="container">
+    <p>Hello {{name}}</p>
+
+    <form action='/store/user' method='POST' >
+    <div class="mb-3 col-4">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control " name="username" id="exampleInputEmail1" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3 col-4">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control " name="password" id="exampleInputPassword1">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+```
+
+20. The last thing we need to do is to set up a route  that will store the information that would 
+be set in the form. The action at this moment has `/store/user`. So we need to create an endpoint that 
+would catch the information the form is sending.
 
 
 </details>
