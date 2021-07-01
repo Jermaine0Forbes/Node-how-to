@@ -384,7 +384,21 @@ get the styles from there
 </div>
 ```
 
-20. The last thing we need to do is to set up a route  that will store the information that would 
+20. Lastly, *require* the path to the db file in the `app.js` like so. This will allow the mongod database to connect on startup of the app
+
+```js
+// In app.js require the file like so
+
+require("./mvc/models/db");
+const express = require('express');
+const body = require('body-parser');
+const cookie = require('cookie-parser');
+const path = require('path');
+const app = express();
+...
+```
+
+21. The last thing we need to do is to set up a route  that will store the information that would 
 be set in the form. The action at this moment has `/store/user`. So we need to create an endpoint that 
 would catch the information the form is sending.
 
