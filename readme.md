@@ -2,8 +2,9 @@
 
 - [how to use process.env][env]
 - [how to upgrade node with nvm][upgrade-nvm]
-- how to set up a basic node.js application
+- [how to set up a basic node.js application][setup-node]
 
+[setup-node]:#how-to-set-up-a-basic-nodejs-application
 [home]:#how-to-nodejs
 [env]:#how-to-use-processenv
 [upgrade-nvm]:#how-to-upgrade-nvm
@@ -400,7 +401,50 @@ const app = express();
 
 21. The last thing we need to do is to set up a route  that will store the information that would 
 be set in the form. The action at this moment has `/store/user`. So we need to create an endpoint that 
-would catch the information the form is sending.
+would catch the information the form is sending. So in the *homeController* file add this code in order to store the user's information
+
+```js
+const goose = require("mongoose");
+const User = goose.model('Users')
+
+module.exports.home = (req, res) => {
+
+    res.render("home", {name:'Jermaine Forbes'});
+}
+
+module.exports.storeUser = (req , res) => {
+    User.create(req.body, (err, data) =>{
+
+      //if there was any type of error, they will the error message
+        if(err) return res.send(err)
+
+      //if there is no error, then it output the data into the console, and send a message that the information has been saved
+        console.log(data)
+        res.send("Information has been saved")
+
+    })
+
+}
+
+```
+
+22. Now, go back into the **route.js** file to create the end point of `store/user`.
+
+```js
+const express  = require('express');
+const route = express.Router();
+const ctr = require("../controllers/homeController");
+
+
+route.get("/",ctr.home)
+
+// Now when the form is submitted it will store the new user information and send you a message
+route.post("/store/user",ctr.storeUser)
+
+
+module.exports = route;
+
+```
 
 
 </details>
