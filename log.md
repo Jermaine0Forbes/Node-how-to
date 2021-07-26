@@ -1,4 +1,26 @@
-# Logs 
+# Logs
+
+## 7-26-21
+
+how to setup jest with react
+
+https://www.robinwieruch.de/react-testing-jest
+
+## 7-25-21 
+
+### Need to document 
+
+how to setup react with webpack 
+
+- [How to setup React with Webpack](https://levelup.gitconnected.com/how-to-setup-a-react-application-with-webpack-f781b5c4a4ab)
+
+how to setup partials with handlebars template engine
+
+- [Node.js + Express + Handlebars.js + partial views](https://stackoverflow.com/questions/16385173/node-js-express-handlebars-js-partial-views)
+
+how to convert mongo data into json so that handlebars can output it
+
+- [Handlebars: Access has been denied to resolve the property “from” because it is not an “own property” of its parent](https://stackoverflow.com/questions/59690923/handlebars-access-has-been-denied-to-resolve-the-property-from-because-it-is)
 
 ## 9-14-20
 

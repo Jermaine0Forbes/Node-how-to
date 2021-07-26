@@ -7,6 +7,11 @@
 - [how to include other files][]
 
 
+## Handlebars
+
+- [how to create partials][https://stackoverflow.com/questions/16385173/node-js-express-handlebars-js-partial-views]
+
+
 [pug-layout]:#how-to-enable-layouts-in-pug
 [setup-pug]:#how-to-setup-pug-to-work-with-node
 [home]:#template
