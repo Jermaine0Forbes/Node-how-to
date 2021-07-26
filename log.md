@@ -2,6 +2,10 @@
 
 ## 7-26-21
 
+nodemon: port 3000 is already in use app crashed
+
+https://stackoverflow.com/questions/58605392/port-3000-is-already-in-use-nodemon-app-crashed-waiting-for-file-changes-bef
+
 how to setup jest with react
 
 https://www.robinwieruch.de/react-testing-jest
