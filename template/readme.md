@@ -4,17 +4,72 @@
 
 - [how to setup pug to work with node][setup-pug]
 - [how to enable layouts][pug-layout]
-- [how to include other files][]
+- [how to include other files][inc-pug]
 
 
 ## Handlebars
 
 - [how to create partials][https://stackoverflow.com/questions/16385173/node-js-express-handlebars-js-partial-views]
 
-
+[inc-pug]:#how-to-include-other-files
 [pug-layout]:#how-to-enable-layouts-in-pug
 [setup-pug]:#how-to-setup-pug-to-work-with-node
 [home]:#template
+
+
+### how to include other files
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+
+- [pugjs](https://pugjs.org/language/includes.html)
+---
+
+If you want to include files, and you already set up pug to allow different layouts to be used. 
+All you have to do is add the **include** keyword followed by the path to the file you want to 
+include. Also, it might be important to add the comment of the name of the file for every. I cannot
+confirm if it is required or not.
+
+**In the layout file**
+
+```pug
+ //- layout.pug
+doctype html
+html(lang='en')
+  head
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous")
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous")
+    title My Site - Pug!
+
+  body(class="bg-light")
+    //- This is the include file
+    include ../header/header-main.pug
+    block content
+    footer 
+```
+
+**In the header-main file**
+
+```pug
+
+header 
+    nav(class="nav border bg-white")
+        a(class="nav-link active" aria-current="page" href="/") Home
+        a(class="nav-link" href="/users") Users
+        a(class="nav-link" href="/chat") Chat
+        a(class="nav-link" href="#" tabindex="-1" aria-disabled="true") Disabled
+
+```
+
+I'm pretty sure that's all you have to do as long as you have the path to the views set and the layouts also set in app/index.js
+
+</details>
+
+[go back :house:][home]
 
 
 ### how to enable layouts in pug
