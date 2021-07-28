@@ -30,28 +30,29 @@ app.use(cookie());
 app.use("/", routes);
 
 app.use(function(req,res,next){
-	if(res.status(404)){
-	  res.render('error/400');
-	}
-    console.log(typeof next)
-    console.log(next)
 
+    if(res.statusCode == 404 || res.statusCode == 200){
+        res.render('error/400', {code:404, errTitle:err});
+      }
     return next();
 });
 
 app.use(function(err,req,res,next){
-    let path ;
+     let path , code ;
      switch(res.statusCode){
-         case 500:
-            path = "error/500";
-         break;
-         case 502:
-            path = "error/502";
+        case 500:
+           path = "error/500";
+           code = 500;
         break;
-         case 503:
-            path = "error/503";
-     }
-     res.render(path,{errTitle:err});
+        case 502:
+           path = "error/502";
+           code = 502;
+       break;
+        case 503:
+           path = "error/503";
+           code = 502;
+    }
+    res.render(path,{errTitle:err, code:code});
 })
 
 app.listen(port, ip, function(){

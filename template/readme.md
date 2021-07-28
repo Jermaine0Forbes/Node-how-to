@@ -9,12 +9,49 @@
 
 ## Handlebars
 
-- [how to create partials][https://stackoverflow.com/questions/16385173/node-js-express-handlebars-js-partial-views]
+- [how to create partials][hbs-partials]
 
+[hbs-partials]:#how-to-create-partials-in-hbs
 [inc-pug]:#how-to-include-other-files
 [pug-layout]:#how-to-enable-layouts-in-pug
 [setup-pug]:#how-to-setup-pug-to-work-with-node
 [home]:#template
+
+
+### how to create partials in hbs
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+
+- [stackoverflow](https://stackoverflow.com/questions/16385173/node-js-express-handlebars-js-partial-views)
+---
+
+Within app.js, just before you set the view engine. Initialize  the handlebars method and enter the path to where the partials directory should be 
+located. You can also enter in other options within the method like so.
+
+```js
+
+
+app.engine('hbs',hbs({
+    extname: 'hbs', 
+    defaultLayout: 'main', 
+    layoutsDir: __dirname + '/mvc/views/layouts/',
+    partialsDir: __dirname + '/mvc/views/partials/'// this is where you define the path to where partials will be located
+}));
+app.set("view engine","hbs"); // sets the name  of the view engine that is going to be used
+app.set("views",path.join(__dirname,"mvc/views")); // setting the views path
+
+...
+
+```
+
+</details>
+
+[go back :house:][home]
 
 
 ### how to include other files
