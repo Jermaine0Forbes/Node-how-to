@@ -18,7 +18,7 @@ how to setup react with webpack
 
 - [How to setup React with Webpack](https://levelup.gitconnected.com/how-to-setup-a-react-application-with-webpack-f781b5c4a4ab)
 
-how to setup partials with handlebars template engine
+~~how to setup partials with handlebars template engine~~
 
 - [Node.js + Express + Handlebars.js + partial views](https://stackoverflow.com/questions/16385173/node-js-express-handlebars-js-partial-views)
 

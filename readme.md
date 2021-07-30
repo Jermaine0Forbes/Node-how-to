@@ -3,6 +3,7 @@
 - [how to use process.env][env]
 - [how to upgrade node with nvm][upgrade-nvm]
 - [how to set up a basic node.js application][setup-node]
+- [how to setup react with webpack ][]
 
 [setup-node]:#how-to-set-up-a-basic-nodejs-application
 [home]:#how-to-nodejs
