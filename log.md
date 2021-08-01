@@ -1,5 +1,17 @@
 # Logs
 
+## 8-1-21
+
+How to solved jest errors like 
+
+- Unexpected token “<”
+- “Cannot use import statement outside a module” 
+-  Or some error that asks you for "@babel/plugin-syntax-jsx"
+
+https://stackoverflow.com/questions/56952728/jest-tests-on-react-components-unexpected-token
+
+https://stackoverflow.com/questions/58613492/how-to-resolve-cannot-use-import-statement-outside-a-module-in-jest
+
 ## 7-26-21
 
 nodemon: port 3000 is already in use app crashed
