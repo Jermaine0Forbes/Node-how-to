@@ -6,7 +6,7 @@ How to solved jest errors like
 
 - Unexpected token “<”
 - “Cannot use import statement outside a module” 
--  Or some error that asks you for "@babel/plugin-syntax-jsx"
+-   Support for the experimental syntax 'jsx' isn't currently enabled
 
 https://stackoverflow.com/questions/56952728/jest-tests-on-react-components-unexpected-token
 
