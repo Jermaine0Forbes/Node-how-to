@@ -3,12 +3,109 @@
 - [how to use process.env][env]
 - [how to upgrade node with nvm][upgrade-nvm]
 - [how to set up a basic node.js application][setup-node]
-- [how to setup react with webpack ][]
+- [how to setup react with webpack ][setup-wp]
 
+[setup-wp]:#how-to-setup-react-with-webpack[setup-wp]
 [setup-node]:#how-to-set-up-a-basic-nodejs-application
 [home]:#how-to-nodejs
 [env]:#how-to-use-processenv
 [upgrade-nvm]:#how-to-upgrade-nvm
+
+
+
+### how to setup react with webpack
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+
+- [How to setup React with Webpack](https://levelup.gitconnected.com/how-to-setup-a-react-application-with-webpack-f781b5c4a4ab)
+---
+
+1. First install react & webpack libraries
+
+```
+npm i react react-dom ; npm i -D webpack webpack-cli
+```
+
+2. Next create a directory that will hold the react files. So in the terminal type `mkdir src` or whatever you want your folder to be named.
+Then create the  **App.js** file, and add the basic code like so.
+
+```js
+
+import React from "react";
+
+export default function App() {
+  return <h1>Hello World</h1>;
+}
+```
+
+3. Now, create the **index.js** file that will render the react file like so.
+
+```js
+
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+
+ReactDOM.render(<App />, document.getElementById("app"));
+```
+
+4. Next install the babel loaders that will compile your react code so that can be used in the browser
+
+```
+npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader
+```
+
+5. Now it's time to create the webpack file. So you can  `vim webpack.config.js`, and add this code like so to your config file
+
+```js
+
+const path = require("path");
+module.exports = {
+  entry: "/src/index.js",
+  output: { path: path.resolve(__dirname, "public/js/") },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
+        },
+      },
+    ],
+  },
+  mode: "development",
+  watch:true,
+};
+
+```
+
+6. Now in your package.json, add a webpack script that you can call when you do `npm run ...` like so
+
+```
+  "scripts": {
+    "build": "webpack" // in the scripts property add this code
+  },
+
+```
+
+7. So now you if put in the the terminal `npm run build`, webpack would be in watch mode and will compile your code
+to the designated **output** property. So in this example it would be `public/js/main.js`. If you want to change the 
+name of the output file you have to add the  **filename** property inside the **output** object of the webpack object..
+
+
+</details>
+
+[go back :house:][home]
+
 
 
 ### how to set up a  basic node.js application

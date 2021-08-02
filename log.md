@@ -14,7 +14,7 @@ https://www.robinwieruch.de/react-testing-jest
 
 ### Need to document 
 
-how to setup react with webpack 
+~~how to setup react with webpack~~ 
 
 - [How to setup React with Webpack](https://levelup.gitconnected.com/how-to-setup-a-react-application-with-webpack-f781b5c4a4ab)
 
@@ -31,11 +31,11 @@ how to convert mongo data into json so that handlebars can output it
 ### Need to document
 how to use process.env in node applications
 
-- [Working with Environment Variables in Node.js](https://www.twilio.com/blog/working-with-environment-variables-in-node-js-html)
+~~[Working with Environment Variables in Node.js](https://www.twilio.com/blog/working-with-environment-variables-in-node-js-html)~~
 
 ## 9-6-20
 
 ### Need to document
 
-- [how to upgrade node.js with nvm](https://stackoverflow.com/questions/34810526/how-to-properly-upgrade-node-using-nvm)
+~~[how to upgrade node.js with nvm](https://stackoverflow.com/questions/34810526/how-to-properly-upgrade-node-using-nvm)~~
 
