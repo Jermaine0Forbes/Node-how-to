@@ -6,16 +6,50 @@
 - [how to enable layouts][pug-layout]
 - [how to include other files][inc-pug]
 
-
 ## Handlebars
 
 - [how to create partials][hbs-partials]
+- [Access has been denied to resolve the property “from” because it is not an “own property” of its parent][err-hbs-1]
 
+[err-hbs-1]:#access-has-been-denied-to-resolve-the-property-from-because-it-is-not-an-own-property-of-its-parent
 [hbs-partials]:#how-to-create-partials-in-hbs
 [inc-pug]:#how-to-include-other-files
 [pug-layout]:#how-to-enable-layouts-in-pug
 [setup-pug]:#how-to-setup-pug-to-work-with-node
 [home]:#template
+
+
+
+### Access has been denied to resolve the property "from" because it is not an "own property" of its parent
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+
+- [Handlebars: Access has been denied to resolve the property “from” because it is not an “own property” of its parent](https://stackoverflow.com/questions/59690923/handlebars-access-has-been-denied-to-resolve-the-property-from-because-it-is)
+- [Faster Mongoose Queries With Lean](https://mongoosejs.com/docs/tutorials/lean.html)
+- [github](https://github.com/handlebars-lang/handlebars.js/issues/1642)
+---
+
+If you try to get data from mongoose and try to output the data in handlebars it will show because the data is encapsulated in a mongoose object. 
+So the best way to retrieve the data that will give handlebars direct access to it, is to convert the data into regular javascript object literals.
+And that is what the **lean** method does within mongoose. It transforms the mongoose objects into regular javascript objects like so.
+
+```js
+dbName.find({}).lean()
+  // execute query
+  .exec(function(error, body) {
+     //Some code
+  });
+```
+
+</details>
+
+[go back :house:][home]
+
 
 
 ### how to create partials in hbs
