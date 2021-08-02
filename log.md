@@ -14,7 +14,7 @@ https://stackoverflow.com/questions/58613492/how-to-resolve-cannot-use-import-st
 
 ## 7-26-21
 
-nodemon: port 3000 is already in use app crashed
+~~nodemon: port 3000 is already in use app crashed~~
 
 https://stackoverflow.com/questions/58605392/port-3000-is-already-in-use-nodemon-app-crashed-waiting-for-file-changes-bef
 
@@ -34,7 +34,7 @@ https://www.robinwieruch.de/react-testing-jest
 
 - [Node.js + Express + Handlebars.js + partial views](https://stackoverflow.com/questions/16385173/node-js-express-handlebars-js-partial-views)
 
-how to convert mongo data into json so that handlebars can output it
+~~how to convert mongo data into json so that handlebars can output it~~
 
 - [Handlebars: Access has been denied to resolve the property “from” because it is not an “own property” of its parent](https://stackoverflow.com/questions/59690923/handlebars-access-has-been-denied-to-resolve-the-property-from-because-it-is)
 

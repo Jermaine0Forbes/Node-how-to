@@ -4,13 +4,56 @@
 - [how to upgrade node with nvm][upgrade-nvm]
 - [how to set up a basic node.js application][setup-node]
 - [how to setup react with webpack ][setup-wp]
+- [nodemon: port 3000 is already in use app crashed][nodemon-crashed]
 
+[nodemon-crashed]:#nodemon-port-3000-is-already-in-use-app-crashed
 [setup-wp]:#how-to-setup-react-with-webpack[setup-wp]
 [setup-node]:#how-to-set-up-a-basic-nodejs-application
 [home]:#how-to-nodejs
 [env]:#how-to-use-processenv
 [upgrade-nvm]:#how-to-upgrade-nvm
 
+### nodemon: port 3000 is already in use app crashed
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+
+- [stackoverflow](https://stackoverflow.com/questions/58605392/port-3000-is-already-in-use-nodemon-app-crashed-waiting-for-file-changes-bef)
+---
+
+Basically this error message would happen when nodemon tries to set the application to certain port ( in this case it's 3000), 
+and the node application is still running on that port. Many times, the node application is still running even when you restart nodemon. 
+So, the best thing to do is to install `kill-port` package that will allow you destroy the process based on the port number when you 
+tell nodemon to restart or if nodemon crashes. This works sometimes but it don't work all the time
+
+1. First install kill-port package
+
+```
+ npm i -D kill-port
+```
+
+2. Now create a nodemon.json, that will allow the options to kill/destroy the process with the specific port number. Add this code
+
+```json
+{
+  "events": {
+    "restart": "kill-port 3000",
+    "crash": "kill-port 3000"
+  },
+  "delay": "1500"
+}
+```
+
+3. Now you can run `nodemon index.js` or whatever command you run and it should be able to run and kill processes when nodemon
+restarts or crashes
+
+</details>
+
+[go back :house:][home]
 
 
 ### how to setup react with webpack
