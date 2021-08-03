@@ -18,7 +18,7 @@ https://stackoverflow.com/questions/58613492/how-to-resolve-cannot-use-import-st
 
 https://stackoverflow.com/questions/58605392/port-3000-is-already-in-use-nodemon-app-crashed-waiting-for-file-changes-bef
 
-how to setup jest with react
+~~how to setup jest with react~~
 
 https://www.robinwieruch.de/react-testing-jest
 

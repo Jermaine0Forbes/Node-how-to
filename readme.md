@@ -5,13 +5,93 @@
 - [how to set up a basic node.js application][setup-node]
 - [how to setup react with webpack ][setup-wp]
 - [nodemon: port 3000 is already in use app crashed][nodemon-crashed]
+- [how to setup jest with react][jest-react]
 
+[jest-react]:#how-to-setup-jest-with-react
 [nodemon-crashed]:#nodemon-port-3000-is-already-in-use-app-crashed
 [setup-wp]:#how-to-setup-react-with-webpack[setup-wp]
 [setup-node]:#how-to-set-up-a-basic-nodejs-application
 [home]:#how-to-nodejs
 [env]:#how-to-use-processenv
 [upgrade-nvm]:#how-to-upgrade-nvm
+
+### how to setup jest with react
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+
+- [How to test React with Jest](https://www.robinwieruch.de/react-testing-jest)
+---
+
+I'm going to assume that you already installed react and got a react app up and running
+
+1. So first install jest
+
+```
+npm i -D jest
+```
+2. Now in the package.json, add this in the *scripts* section. This will allow you to run jest with any
+cofigurations that you are going to put in the `jest.config.js`
+
+```json
+{
+  ...
+  "scripts": {
+    "start": "webpack serve --config ./webpack.config.js --mode development",
+    "test": "jest --config jest.config.js",
+    "test:watch": "npm run test -- --watch",
+  },
+  ...
+}
+```
+
+3. Now let's `vim jest.config.js` and add this necessary code to look for any js files that might have the *spec* extension
+
+```js
+module.exports = {
+  "testRegex": "((\\.|/*.)(spec))\\.js?$"
+}
+```
+
+4. If you have not installed babel libraries that are needed for jest, here is the time to do so
+
+```
+ npm i -D @babel/preset-env @babel/preset-react
+```
+
+5. Next, let's create a `babel.config.js` file in order to make sure jest does not throw any errors when you add JSX in
+your testing files. Add code like so 
+
+```js
+module.exports = {presets: ['@babel/preset-env','@babel/preset-react']}
+
+```
+
+6. Now if you already have an App.js file, create a *App.spec.js* file and add code like so. This will be a general
+ assertion to just to see if jest is running.
+
+```js
+import React from "react";
+
+
+describe('My Test Suite', () => {
+  it('should show my first test', () => {
+    expect(true).toEqual(true);
+  });
+});
+
+```
+
+7. Now run `npm run test`, jest should start running and the result should pass.
+
+</details>
+
+[go back :house:][home]
+
 
 ### nodemon: port 3000 is already in use app crashed
 
