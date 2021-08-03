@@ -7,6 +7,10 @@
 - [nodemon: port 3000 is already in use app crashed][nodemon-crashed]
 - [how to setup jest with react][jest-react]
 
+## Errors
+- [Support for the experimental syntax 'jsx' isn't currently enabled][err-1]
+
+[err-1]:#support-for-the-experimental-syntax-jsx-isnt-currently-enabled
 [jest-react]:#how-to-setup-jest-with-react
 [nodemon-crashed]:#nodemon-port-3000-is-already-in-use-app-crashed
 [setup-wp]:#how-to-setup-react-with-webpack[setup-wp]
@@ -14,6 +18,48 @@
 [home]:#how-to-nodejs
 [env]:#how-to-use-processenv
 [upgrade-nvm]:#how-to-upgrade-nvm
+
+
+
+### Support for the experimental syntax 'jsx' isn't currently enabled
+
+<details>
+<summary>
+View Content
+</summary>
+
+:link: **Reference**
+
+- [Unexpected token “<”](https://stackoverflow.com/questions/56952728/jest-tests-on-react-components-unexpected-token)
+- [“Cannot use import statement outside a module”](https://stackoverflow.com/questions/58613492/how-to-resolve-cannot-use-import-statement-outside-a-module-in-jest)
+---
+
+This is an error that you will see if you're jest to test react applications. This solution can also fix several other errors like 
+-  Unexpected token “<”
+-  “Cannot use import statement outside a module” 
+
+Basically the way to resolve this issue is to add react presets within a `babel.config.js`. If you have set up jest yet, then go [here][jest-react]
+
+
+1. If you have not installed these babel packages then you should right now.
+
+```
+ npm i -D @babel/preset-env @babel/preset-react
+```
+
+2. Next, create a `babel.config.js` file and insert this code
+
+```js
+module.exports = {presets: ['@babel/preset-env','@babel/preset-react']}
+
+```
+3. What I found out is that when you added these presets you don't receive this error message, when you run jest that might a jsx component
+within the file.
+
+</details>
+
+[go back :house:][home]
+
 
 ### how to setup jest with react
 
