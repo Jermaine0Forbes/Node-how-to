@@ -2,7 +2,7 @@
 
 ## 8-1-21
 
-How to solved jest errors like 
+~~How to solved jest errors like~~ 
 
 - Unexpected token “<”
 - “Cannot use import statement outside a module” 
